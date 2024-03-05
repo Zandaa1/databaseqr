@@ -27,7 +27,7 @@ function add() {
     $query = "INSERT INTO users VALUES('', '$name','$newfilename', '$location')";
     mysqli_query($conn, $query);
 
-    echo "<script>alert('User Added Successfully!') </script>";
+    echo "<script>alert('Item Added Successfully!') </script>";
 
 }
     
@@ -50,7 +50,7 @@ function edit() {
     }
     $query = "UPDATE users SET name = '$name', location = '$location' WHERE id = '$id'";
     mysqli_query($conn, $query);
-    echo "<script>alert('Item Updated Successfully!') </script>";
+    echo "<script>alert('Item Updated Successfully!');</script>";
 }
 
 function delete(){
@@ -62,6 +62,7 @@ function delete(){
     mysqli_query($conn, $query);
 
     echo "<script>alert('Item Deleted Successfully!') </script>";
+
 }
 
 ?>

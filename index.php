@@ -1,19 +1,19 @@
-<?php require 'function.php'; 
+<?php require 'function.php';
 
 if (isset($_POST['search'])) {
-    $valueToSearch = $_POST['valueToSearch'];
-    $query = "SELECT * FROM `users` WHERE CONCAT(`id`, `name`,`location`) LIKE '%" . $valueToSearch . "%'";
-    $search_result = filterTable($query);
+  $valueToSearch = $_POST['valueToSearch'];
+  $query = "SELECT * FROM `users` WHERE CONCAT(`id`, `name`,`location`) LIKE '%" . $valueToSearch . "%'";
+  $search_result = filterTable($query);
 } else {
-    $query = "SELECT * FROM `users`";
-    $search_result = filterTable($query);
+  $query = "SELECT * FROM `users`";
+  $search_result = filterTable($query);
 }
 
 function filterTable($query)
 {
-    $connect = mysqli_connect('localhost', 'root', '', 'zandaa_db');
-    $filter_Result = mysqli_query($connect, $query);
-    return $filter_Result;
+  $connect = mysqli_connect('localhost', 'root', '', 'zandaa_db');
+  $filter_Result = mysqli_query($connect, $query);
+  return $filter_Result;
 }
 
 ?>
@@ -21,137 +21,156 @@ function filterTable($query)
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR CODE HTML</title>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR CODE HTML</title>
 </head>
 
 <body>
 
 
-<div class="container-fluid">
+  <div class="container-fluid">
 
-<nav class="navbar navbar-expand navbar-light bg-light sticky-top">
-  <ul class="nav navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link active" href="index.php" aria-current="page"
-        >Main Page <span class="visually-hidden">(current)</span></a
-      >
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="adduser.php">Add Items</a>
-    </li>
-  </ul>
-</nav>
-
+    <nav class="navbar navbar-expand navbar-light bg-light sticky-top">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="index.php" aria-current="page">View items<span class="visually-hidden">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="adduser.php">Add Items</a>
+        </li>
+      </ul>
+    </nav>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Scan QR Code</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Scan QR Code</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="qrcodesuccess">
+
             </div>
-            <div class="modal-body">
-              <div id="qrcodesuccess">
-    
-              </div>
-              <div id="qr-reader" style="width:auto"></div>
-    
-              <div id="qr-reader-results"></div>
-    
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+            <div id="qr-reader" style="width:auto"></div>
+
+            <div id="qr-reader-results"></div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Scan QR Code</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Scan QR Code</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="qrcodesuccess">
+
             </div>
-            <div class="modal-body">
-              <div id="qrcodesuccess">
-    
-              </div>
-              <div id="qr-reader" style="width:auto"></div>
-    
-              <div id="qr-reader-results"></div>
-    
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+            <div id="qr-reader" style="width:auto"></div>
+
+            <div id="qr-reader-results"></div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
-      </div>    
+      </div>
+    </div>
+
+<div class="p-4 mb-2 bg-light justify-content-center text-center">
+  <div class="container-fluidpy-5">
+    <div class="row">
+      <div class="col-sm-3">
+<img style="border-radius:25%;" src="img/xandercropped.png" width=200 alt="">
+      </div>
+      <div class="col-sm-9">
+      <br><br>
+      <h1 class="display-5 fw-bold">Item Database (QR Code Support)</h1>
+    <small>Created by <bold>Jason Alexander R. Mangahas </bold></small>
+    <br>
+    <code>Last updated: 11:21 05/03/2024</code>
+      </div>
+
+    </div>
+    
+  </div>
+</div>
 
 
-<form action="index.php" method="post">
+<hr>
 
-<div class="input-group">
-                    <input type="text" id="qroutput" class="form-control" name="valueToSearch" placeholder="Search here"><br><br>
-                    <input type="submit" id="searchbox" class="btn btn-primary" name="search" value="Filter">
-                    <a class="btn btn-dark bi bi-qr-code-scan" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-        aria-expanded="false" aria-controls="collapseExample"></a>
-                    <form action="index.php">
-                        <input type="submit" class="btn btn-dark" name="search" value="Reset">
-                    </form>
-                </div>
+<p>Search here or press the QR button:</p>
 
-</form>
+    <form action="index.php" method="post">
+
+      <div class="input-group">
+        <input type="text" id="qroutput" class="form-control" name="valueToSearch" placeholder="Search here"><br><br>
+        <input type="submit" id="searchbox" class="btn btn-primary" name="search" value="Filter">
+        <a class="btn btn-dark bi bi-qr-code-scan" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-expanded="false" aria-controls="collapseExample"></a>
+        <form action="index.php">
+          <input type="submit" class="btn btn-dark" name="search" value="Reset">
+        </form>
+      </div>
+
+    </form>
 
     <br>
     <table style="margin-top:2%;" class="table table-striped table-dark">
-        <thead style="position:sticky;top:0;" class="thead-dark">
-            <tr>
-                <th>Item No.</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>QR CODE</th>
-                <th>Location</th> 
-                <th>Action</th>
-            </tr>
-        </thead>
+      <thead style="position:sticky;top:0;" class="thead-dark">
+        <tr>
+          <th>Item No.</th>
+          <th>Name</th>
+          <th>Image</th>
+          <th>QR CODE</th>
+          <th>Location</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-        <!-- populate table from mysql database -->
-        <?php while ($row = mysqli_fetch_array($search_result)) : ?>
-            <tbody>
+      <!-- populate table from mysql database -->
+      <?php while ($row = mysqli_fetch_array($search_result)) : ?>
+        <tbody>
 
-                <tr>
+          <tr>
 
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['name']; ?></td>
-                    <td><img src="uploads/<?php echo $row['image']; ?>" width='200'></td>
-                    <td>
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $row['id'];?> " alt="">
-                    </td>
-                    <td><?php echo $row['location'];?></td>
-                    <td><a class="btn btn-primary" href="edituser.php?id=<?php echo $row['id']; ?>">Edit</a>
-                    <form action="" method="POST">
-                        <button class="btn btn-danger" type="submit" name="submit" value="<?php echo $row['id'] ?>">Delete</button>
-                    </form>
-                    <a class="btn btn-success" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $row['id'];?>">Download QR</a>
-                  </td>
+            <td><?php echo $row['id']; ?></td>
+            <td><?php echo $row['name']; ?></td>
+            <td><img src="uploads/<?php echo $row['image']; ?>" width='200'></td>
+            <td>
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $row['id']; ?> " alt="">
+            </td>
+            <td><?php echo $row['location']; ?></td>
+            <td><a class="btn btn-primary" href="edituser.php?id=<?php echo $row['id']; ?>">Edit</a>
+              <form action="" method="POST">
+                <button class="btn btn-danger" type="submit" name="submit" value="<?php echo $row['id'] ?>">Delete</button>
+              </form>
+              <a class="btn btn-success" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $row['id']; ?>">Download QR</a>
+            </td>
 
-                      
 
-                </tr>
-            </tbody>
-        <?php endwhile; ?>
+
+          </tr>
+        </tbody>
+      <?php endwhile; ?>
     </table>
 
 
 
 
-  <!--  <table border='1'>
+    <!--  <table border='1'>
         <tr>
             <td>#</td>
             <td>Name</td>
@@ -183,18 +202,19 @@ function filterTable($query)
     <script>
       function docReady(fn) {
         // see if DOM is already available
-        if (document.readyState === "complete"
-          || document.readyState === "interactive") {
+        if (document.readyState === "complete" ||
+          document.readyState === "interactive") {
           // call on next available tick
           setTimeout(fn, 1);
         } else {
           document.addEventListener("DOMContentLoaded", fn);
         }
       }
-  
-      docReady(function () {
+
+      docReady(function() {
         var resultContainer = document.getElementById('qr-reader-results');
         var lastResult, countResults = 0;
+
         function onScanSuccess(decodedText, decodedResult) {
           if (decodedText !== lastResult) {
             ++countResults;
@@ -206,17 +226,20 @@ function filterTable($query)
             setTimeout(function() {
               document.getElementById("searchbox").click();
             }, 2000);
-          
+
           }
         }
-  
+
         var html5QrcodeScanner = new Html5QrcodeScanner(
-          "qr-reader", { fps: 10, qrbox: 250 });
+          "qr-reader", {
+            fps: 10,
+            qrbox: 250
+          });
         html5QrcodeScanner.render(onScanSuccess);
       });
-
-
     </script>
+
+
 
 </body>
 
