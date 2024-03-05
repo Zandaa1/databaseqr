@@ -32,7 +32,7 @@ function filterTable($query)
 <body>
 
 
-  <div class="container-fluid">
+  <div class="container">
 
     <nav class="navbar navbar-expand navbar-light bg-light sticky-top">
       <ul class="nav navbar-nav">
@@ -91,7 +91,7 @@ function filterTable($query)
     </div>
 
 <div class="p-4 mb-2 bg-light justify-content-center text-center">
-  <div class="container-fluidpy-5">
+  <div class="container-fluid py-5">
     <div class="row">
       <div class="col-sm-3">
 <img style="border-radius:25%;" src="img/xandercropped.png" width=200 alt="">
@@ -101,7 +101,7 @@ function filterTable($query)
       <h1 class="display-5 fw-bold">Item Database (QR Code Support)</h1>
     <small>Created by <bold>Jason Alexander R. Mangahas </bold></small>
     <br>
-    <code>Last updated: 11:21 05/03/2024</code>
+    <code>Last updated: 1:07pm 05/03/2024</code>
       </div>
 
     </div>
@@ -112,7 +112,7 @@ function filterTable($query)
 
 <hr>
 
-<p>Search here or press the QR button:</p>
+<p>Search here or <a data-bs-toggle="modal" data-bs-target="#exampleModal" aria-expanded="false" aria-controls="collapseExample">Scan QR Code</a>:</p>
 
     <form action="index.php" method="post">
 
@@ -220,7 +220,7 @@ function filterTable($query)
             ++countResults;
             lastResult = decodedText;
             // Handle on success condition with the decoded message.
-            document.getElementById("qrcodesuccess").innerHTML = ("<div class='alert alert-success'> <p id='qrcode-success'>Processing... Please wait.</p></div>");
+            document.getElementById("qrcodesuccess").innerHTML = ("<div class='alert alert-danger'> <p id='qrcode-success'>Processing QR Code...</p></div>");
             document.getElementById("qroutput");
             qroutput.value += lastResult;
             setTimeout(function() {

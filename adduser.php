@@ -13,7 +13,7 @@
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container">
 
         <nav class="navbar navbar-expand navbar-light bg-light">
             <ul class="nav navbar-nav">
@@ -44,14 +44,14 @@
                                 </select>
                                 <br>
                                 <br>
-                                <a href="index.php" class="btn btn-danger">Go Back</a>
+                                <a href="index.php" class="btn btn-danger"><< Go Back</a>
                                 <button class="btn btn-primary" type="submit" name="submit" value="add">Add Item</button>
                             </form>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <p>Image to be uploaded:</p>
-                        <img id="thumb" src="img/placeholder.png" alt="placeholder" width=300>
+                        <img id="thumb" src="img/placeholder.png" alt="placeholder" width=350>
 
                     </div>
                 </div>

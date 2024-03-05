@@ -17,7 +17,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id = '
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container">
 
     <nav class="navbar navbar-expand navbar-light bg-light">
             <ul class="nav navbar-nav">
@@ -47,14 +47,14 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id = '
                                 <option value="4th Floor">4th Floor</option>
                             </select>
                             <br>
-                            <a class="btn btn-danger" href="index.php">Go Back</a>
+                            <a class="btn btn-danger" href="index.php"><< Go Back</a>
                             <button class="btn btn-primary" type="submit" name="submit" value="edit">Edit</button>
                         </form>
 
                     </div>
                     <div class="col-sm-6">
                         <p>Current Image:</p>
-                        <img class="border" src="uploads/<?php echo $user['image'] ?>" width=300 alt="">
+                        <img class="border" src="uploads/<?php echo $user['image'] ?>" width=400 alt="">
                     </div>
                 </div>
             </div>
