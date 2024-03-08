@@ -31,20 +31,8 @@ function filterTable($query)
 
 <body>
 
-
   <div class="container">
 
-    <nav class="navbar navbar-expand navbar-light bg-light sticky-top">
-      <ul class="nav navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.php" aria-current="page">View items<span class="visually-hidden">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="adduser.php">Add Items</a>
-        </li>
-      </ul>
-    </nav>
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -90,29 +78,34 @@ function filterTable($query)
       </div>
     </div>
 
-<div class="p-4 mb-2 bg-light justify-content-center text-center">
-  <div class="container-fluid py-5">
-    <div class="row">
-      <div class="col-sm-3">
-<img style="border-radius:25%;" src="img/xandercropped.png" width=200 alt="">
-      </div>
-      <div class="col-sm-9">
-      <br><br>
-      <h1 class="display-5 fw-bold">Item Database (QR Code Support)</h1>
-    <small>Created by <bold>Jason Alexander R. Mangahas </bold></small>
-    <br>
-    <code>Last updated: 1:07pm 05/03/2024</code>
-      </div>
+    <div class="p-4 mb-2 bg-light justify-content-center text-center">
+      <div class="container-fluid py-5">
+        <div class="row">
+          <div class="col-sm-3">
+            <img style="border-radius:25%;" src="img/xandercropped.png" width=200 alt="">
+          </div>
+          <div class="col-sm-9">
+            <br><br>
+            <h1 class="display-5 fw-bold">Item Database (Barcode Code Support)</h1>
+            <small>Created by <bold>Jason Alexander R. Mangahas </bold></small>
+            <br>
+            <code>Last updated: 1:07pm 05/03/2024</code>
+            <br>
+            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-expanded="false" aria-controls="collapseExample" href="#">Scan Item</a>
+            <a class="btn btn-success" href="adduser.php">Add Items</a>
+          </div>
 
+        </div>
+
+      </div>
     </div>
-    
-  </div>
-</div>
 
 
-<hr>
+    <hr>
 
-<p>Search here or <a data-bs-toggle="modal" data-bs-target="#exampleModal" aria-expanded="false" aria-controls="collapseExample">Scan QR Code</a>:</p>
+    <p>Search here or <a data-bs-toggle="modal" data-bs-target="#exampleModal" aria-expanded="false" aria-controls="collapseExample">Scan QR Code</a>:</p>
+
+
 
     <form action="index.php" method="post">
 
@@ -128,13 +121,14 @@ function filterTable($query)
     </form>
 
     <br>
+    <div class="table-responsive">
     <table style="margin-top:2%;" class="table table-striped table-dark">
       <thead style="position:sticky;top:0;" class="thead-dark">
         <tr>
           <th>Item No.</th>
           <th>Name</th>
           <th>Image</th>
-          <th>QR CODE</th>
+          <th>Barcode</th>
           <th>Location</th>
           <th>Action</th>
         </tr>
@@ -150,14 +144,14 @@ function filterTable($query)
             <td><?php echo $row['name']; ?></td>
             <td><img src="uploads/<?php echo $row['image']; ?>" width='200'></td>
             <td>
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $row['id']; ?> " alt="">
+              <img src="https://barcodeapi.org/api/auto/<?php echo $row['id']; ?> " alt="">
             </td>
             <td><?php echo $row['location']; ?></td>
             <td><a class="btn btn-primary" href="edituser.php?id=<?php echo $row['id']; ?>">Edit</a>
               <form action="" method="POST">
                 <button class="btn btn-danger" type="submit" name="submit" value="<?php echo $row['id'] ?>">Delete</button>
               </form>
-              <a class="btn btn-success" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=<?php echo $row['id']; ?>">Download QR</a>
+              <a class="btn btn-success" target="_blank" href="https://barcodeapi.org/api/auto/<?php echo $row['id']; ?>">Download Barcode</a>
             </td>
 
 
@@ -166,6 +160,7 @@ function filterTable($query)
         </tbody>
       <?php endwhile; ?>
     </table>
+    </div>
 
 
 

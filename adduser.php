@@ -15,17 +15,6 @@
 
     <div class="container">
 
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php" aria-current="page">Main Page <span class="visually-hidden">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="adduser.php">Add Items</a>
-                </li>
-            </ul>
-        </nav>
-
             <div class="mb-4 bg-light rounded-3">
                 <div class="container py-5">
                 <div class="row">

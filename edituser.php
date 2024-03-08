@@ -15,24 +15,14 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id = '
     <title>Edit User</title>
 </head>
 
-<body>
+<body style="height: 100%;">
 
-    <div class="container">
+    <div class="container ">
 
-    <nav class="navbar navbar-expand navbar-light bg-light">
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php" aria-current="page">Main Page <span class="visually-hidden">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="adduser.php">Add Items</a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class=" bg-light rounded-3">
+        <div class="bg-light rounded-3">
             <div class="container py-5">
-                <h1 class="fw-bold">Edit Item: <b><?php echo $user['name'] ?></b></h1>
+            <h4 class="display-4">Edit Item:<br></h4>    
+            <h1 class="fw-bold"><b style="color:grey;"><?php echo $user['name'] ?></b></h1>
                 <div class="row">
                     <div class="col-sm-6">
                         <form class="form-group" action="" method="post" enctype="multipart/form-data">
@@ -54,7 +44,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE id = '
                     </div>
                     <div class="col-sm-6">
                         <p>Current Image:</p>
-                        <img class="border" src="uploads/<?php echo $user['image'] ?>" width=400 alt="">
+                        <img class="border" src="uploads/<?php echo $user['image'] ?>" width=50% alt="">
                     </div>
                 </div>
             </div>
