@@ -26,12 +26,42 @@ function filterTable($query)
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR CODE HTML</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+  <link href="css/print.css" media="print" rel="stylesheet" />
+  <title>Home</title>
 </head>
 
 <body>
 
-  <div class="container">
+  <nav class="navbar navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <img class="navbar-brand" src="img/icon.png" width="50px" alt="">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            <img class="navbar-brand" src="img/icon.png" width="50px" alt="">
+          </h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+            </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="container-fluid">
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -77,25 +107,20 @@ function filterTable($query)
         </div>
       </div>
     </div>
+
 
     <div class="p-4 mb-2 bg-light justify-content-center text-center">
       <div class="container-fluid py-5">
-        <div class="row">
-          <div class="col-sm-3">
-            <img style="border-radius:25%;" src="img/xandercropped.png" width=200 alt="">
-          </div>
-          <div class="col-sm-9">
-            <br><br>
-            <h1 class="display-5 fw-bold">Item Database (Barcode Code Support)</h1>
-            <small>Created by <bold>Jason Alexander R. Mangahas </bold></small>
-            <br>
-            <code>Last updated: 1:07pm 05/03/2024</code>
-            <br>
-            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-expanded="false" aria-controls="collapseExample" href="#">Scan Item</a>
-            <a class="btn btn-success" href="adduser.php">Add Items</a>
-          </div>
 
-        </div>
+        <br><br>
+        <h1 class="display-5 fw-bold">Database</h1>
+        <small>Created by <bold>Jason Alexander R. Mangahas </bold></small>
+        <br>
+        <code>Last updated: 1:07pm 05/03/2024</code>
+        <br>
+        <br>
+        <a class="btn btn-primary bi bi-qr-code" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-expanded="false" aria-controls="collapseExample" href="#"> Scan Item</a>
+        <a class="btn btn-success bi bi-plus-square" href="adduser.php"> Add Items</a>
 
       </div>
     </div>
@@ -121,45 +146,43 @@ function filterTable($query)
     </form>
 
     <br>
-    <div class="table-responsive">
-    <table style="margin-top:2%;" class="table table-striped table-dark">
-      <thead style="position:sticky;top:0;" class="thead-dark">
-        <tr>
-          <th>Item No.</th>
-          <th>Name</th>
-          <th>Image</th>
-          <th>Barcode</th>
-          <th>Location</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <!-- populate table from mysql database -->
-      <?php while ($row = mysqli_fetch_array($search_result)) : ?>
-        <tbody>
-
+    <div class="overflow-auto table-responsive">
+      <table style="margin-top:2%;" class="table table-striped table-dark">
+        <thead style="position:sticky;top:0;" class="thead-dark">
           <tr>
-
-            <td><?php echo $row['id']; ?></td>
-            <td><?php echo $row['name']; ?></td>
-            <td><img src="uploads/<?php echo $row['image']; ?>" width='200'></td>
-            <td>
-              <img src="https://barcodeapi.org/api/auto/<?php echo $row['id']; ?> " alt="">
-            </td>
-            <td><?php echo $row['location']; ?></td>
-            <td><a class="btn btn-primary" href="edituser.php?id=<?php echo $row['id']; ?>">Edit</a>
-              <form action="" method="POST">
-                <button class="btn btn-danger" type="submit" name="submit" value="<?php echo $row['id'] ?>">Delete</button>
-              </form>
-              <a class="btn btn-success" target="_blank" href="https://barcodeapi.org/api/auto/<?php echo $row['id']; ?>">Download Barcode</a>
-            </td>
-
-
-
+            <th>Item No.</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Barcode</th>
+            <th>Location</th>
+            <th>Action</th>
           </tr>
-        </tbody>
-      <?php endwhile; ?>
-    </table>
+        </thead>
+
+        <!-- populate table from mysql database -->
+        <?php while ($row = mysqli_fetch_array($search_result)) : ?>
+          <tbody>
+
+            <tr>
+
+              <td><?php echo $row['id']; ?></td>
+              <td><?php echo $row['name']; ?></td>
+              <td><img src="uploads/<?php echo $row['image']; ?>" width='200'></td>
+              <td>
+                <img src="https://barcodeapi.org/api/auto/<?php echo $row['id']; ?> " alt="">
+              </td>
+              <td><?php echo $row['location']; ?></td>
+              <td><a class="btn btn-primary bi bi-pencil-square" href="edituser.php?id=<?php echo $row['id']; ?>"> Edit</a>
+                <br>
+                <form action="" method="POST">
+                  <button class="btn btn-danger bi bi-trash" type="submit" name="submit" value="<?php echo $row['id'] ?>"> Delete</button>
+                </form>
+                <a class="btn btn-success bi bi-download" target="_blank" href="https://barcodeapi.org/api/auto/<?php echo $row['id']; ?>"> Download</a>
+              </td>
+            </tr>
+          </tbody>
+        <?php endwhile; ?>
+      </table>
     </div>
 
 
